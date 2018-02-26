@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Vue 测试实例</title>
+    <script src="https://cdn.bootcss.com/vue/2.4.2/vue.min.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <p>[[ message ]]</p>
+    </div>
+    <div id="app1">
+        <div v-html="message"></div>
+    </div>
+    <div id="app2">
+        <p>[[ message ]]</p>
+        <input v-model="message">
+    </div>
+    <div id="app3">
+        <div v-if="Math.random() > 0.5">
+          Sorry
+        </div>
+        <div v-else>
+          Not sorry
+        </div>
+        <div>
+            [[message]]
+        </div>
+    </div>
+
+
+    <br>
+    <script>
+        new Vue({
+            el: '#app',
+            delimiters: ["[[", "]]"],
+            data: {
+                message: 'Hello Vue.js!'
+            }
+        })
+        new Vue({
+            el: '#app1',
+            data: {
+                message: '<h1>大写的</h1>'
+            }
+        })
+        new Vue({
+            el: '#app2',
+            delimiters: ["[[", "]]"],
+            data: {
+                message: '双向绑定!'
+            }
+        })
+        new Vue({
+            el: '#app3',
+            delimiters: ["[[", "]]"],
+            data: {
+                message:Math.random()
+            }
+        })
+    </script>
+</body>
+
+</html>
