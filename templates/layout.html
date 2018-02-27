@@ -37,15 +37,16 @@ a {
 }
 </style>
 <!--highlight.js https://highlightjs.org/-->
-<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.10.0/styles/solarized-dark.min.css">
-<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.10.0/highlight.min.js"></script>
+<link rel="stylesheet" href="/static/css/solarized-dark.min.css">
+    <script src="/static/js/vue.js"></script>
+<script src="/static/js/highlight.min.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 {% block script %}{% endblock %}
 {% block style %}{% endblock %}
 {% endblock %}
 
 <div id="app">
-  <img height="200px" src="http://flask.pocoo.org/static/logo/flask.png">
+  <img height="200px" src="/static/png/flask.png">
   <img height="200px" src="/static/png/logo.png">
   {% block body %}{% endblock %}
 </div>

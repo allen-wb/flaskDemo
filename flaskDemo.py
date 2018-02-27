@@ -10,9 +10,18 @@ def hello_world():
     return render_template('index.html')
 
 
+@app.route('/user_list')
+def get_user_list():
+    session = DBSession()
+    ret = session.query(User).all()
+    # 使用execute查询,返回的是一个元组集合,在页面可用user[下标获取]
+    # ret = session.execute('SELECT user.id AS user_id, user.name AS user_name FROM user')
+    return render_template('user_list.html', users=ret)
+
+
 @app.route('/example')
 def example():
-    message = "Hello Flask!"
+    message = "Hello Flask!,这是中文字符串"
     return render_template('example.html', message=message)
 
 

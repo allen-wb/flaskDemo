@@ -1,13 +1,9 @@
 {% extends "layout.html" %}
 
-{% block script %}
-<script src="https://unpkg.com/vue/dist/vue.js"></script>
-{% endblock %}
-
 {% block body %}
 <div id="example">
   <h2>Delimiters changing!</h2>
-  <p>Jinja2: ((message))</p>
+  <p>Jinja2: {{ message }}</p>
   <p>Vue: [[message]]</p>
 </div>
 <div class="code">
