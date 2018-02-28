@@ -1,0 +1,13 @@
+{% extends "layout.html" %}
+{% block body %}
+    {% if dict1 %}
+        {{ dict1['name'] }}
+    {% endif %}
+    <form action="/login" method="post">
+        <p>姓名:<input name="name" placeholder="name"></p>
+        <p>密码:<input name="password" placeholder="Password" type="password"></p>
+        <p>
+            <button type="submit">Sign In</button>
+        </p>
+    </form>
+{% endblock %}
