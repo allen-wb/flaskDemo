@@ -66,7 +66,7 @@ def sign_in():
     return render_template('register.html')
 
 
-@app.route('/signin', methods=['POST'])
+@app.route('/sign_in', methods=['POST'])
 def save_user():
     name = request.form.get('name', default=None)
     password = request.form.get('password', default=None)
@@ -111,4 +111,4 @@ def login():
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True)  # 调试模式
