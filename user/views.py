@@ -32,7 +32,8 @@ def login():
 
 @user.route('/logout', methods=['POST'])
 def logout():
-
+    session.pop('name', None)
+    session.pop('user_id', None)
     return render_template('index.html')
 
 
