@@ -1,0 +1,13 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<div id="links">
+    {% if message %}
+        {% for blog in message %}
+            {{ blog.name }}
+        {% endfor %}
+    {% else %}
+        {{ 'no data' }}
+    {% endif %}
+</div>
+{% endblock %}

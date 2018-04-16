@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request
+from flask import Blueprint, render_template, request, session, url_for, redirect
 from datetime import datetime
 from orm import DBSession, User
 from utils import get_uuid
@@ -15,12 +15,14 @@ def to_login():
 def login():
     name = request.form.get('name', default=None)
     password = request.form.get('password', default=None)
-    session = DBSession()
-    user = session.query(User).filter(User.name == name, User.password == password).all()
-    if (not user) and len(user) == 1:
-        session.close()
-        message = '用户名' + name + '登录成功'
-        return render_template('index.html', message=message)
+    db = DBSession()
+    user = db.query(User).filter(User.name == name, User.password == password).first()
+    if user:
+        db.close()
+        session['name'] = name
+        session['user_id'] = user.id
+        # message = '用户名' + name + '登录成功'
+        return redirect(url_for('blog.index'))
     else:
         message = '用户名或密码错误'
         res = {'name': name, 'age': 12, 'sex': '男', 'message': message}
@@ -45,17 +47,17 @@ def add_user():
     password = request.form.get('password', default=None)
     email = request.form.get('email', default=None)
     sex = request.form.get('sex', default=None)
-    session = DBSession()
-    u = session.query(User).filter(User.name == name).first()
+    db = DBSession()
+    u = db.query(User).filter(User.name == name).first()
     if u is not None:
-        session.close()
+        db.close()
         error_message = '用户名' + name + '已存在,请重新输入'
         return render_template('user/register.html', message=error_message)
     else:
         user = User(id=get_uuid(), name=name, password=password, email=email, sex=sex, create_time=datetime.now())
-        session.add(user)
-        session.commit()
-        session.close()
+        db.add(user)
+        db.commit()
+        db.close()
         res = {'code': 200, 'message': 'success'}
         return render_template('login.html', message=res)
 
