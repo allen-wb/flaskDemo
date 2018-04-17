@@ -1,26 +1,37 @@
-{% extends "layout.html" %}
-
+{% extends "base.html" %}
+{% block title %}
+    {{ 'index' }}
+{% endblock %}
 {% block style %}
-<style>
-#links {
-  margin-top: 30px;
-}
-#links ul {
-  list-style-type: none;
-  padding: 0;
-}
-#links li {
-  display: inline-block;
-  margin: 0 10px;
-}
-</style>
+    <style>
+        #links {
+            margin-top: 30px;
+        }
+
+        #links ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        #links li {
+            display: inline-block;
+            margin: 0 10px;
+        }
+    </style>
 {% endblock %}
 
 {% block body %}
-<div id="links">
-    <ul>
-        <li><a href="{{ url_for('user.register') }}">注册</a></li>
-        <li><a href="{{ url_for('user.to_login') }}">登录</a></li>
-    </ul>
-</div>
+    <div id="links">
+        <ul>
+            <li><a href="{{ url_for('user.register') }}">注册</a></li>
+            <li><a href="{{ url_for('user.to_login') }}">登录</a></li>
+        </ul>
+    </div>
+{% endblock %}
+{% block script %}
+    <script>
+        $(function () {
+            console.log(213123);
+        });
+    </script>
 {% endblock %}

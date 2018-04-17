@@ -1,13 +1,15 @@
-{% extends "layout.html" %}
-
+{% extends "base.html" %}
+{% block title %}
+    {{ 'blog list' }}
+{% endblock %}
 {% block body %}
-<div id="links">
-    {% if message %}
-        {% for blog in message %}
-            {{ blog.name }}
-        {% endfor %}
-    {% else %}
-        {{ 'no data' }}
-    {% endif %}
-</div>
+    <div id="">
+        {% if message %}
+            {% for blog in message %}
+                {{ blog.name }}<br>
+            {% endfor %}
+        {% else %}
+            {{ 'no data' }}
+        {% endif %}
+    </div>
 {% endblock %}
