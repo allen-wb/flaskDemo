@@ -107,9 +107,6 @@ circle {
 #slide4:checked ~ #slides .inner {
 	margin-left: -300%;
 }
-input[type="radio"] {
-  display: none;
-}
 
 label {
   background: #CCC;

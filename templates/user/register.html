@@ -1,25 +1,45 @@
 {% extends "base.html" %}
 {% block body %}
-    {% if message %}
-        {{ message }}
-    {% endif %}
-    <form action="/sign_in" method="post" onsubmit="return submit_form()">
-        <p>姓名:<input name="name" id="name" placeholder="name"></p>
+    <span id="errorTip">
+        {% if message and message.code == 100 %}
+            {{ message.message }}
+        {% endif %}
+    </span>
+    <form action="add_user" method="post" id="form" onsubmit="submit_form()">
+        {% if message and message.code == 100 %}
+            <p>姓名:<input name="name" id="name" value="{{ message.data.name }}"></p>
+        {% else %}
+            <p>姓名:<input name="name" id="name" placeholder="name"></p>
+        {% endif %}
         <p>密码:<input name="password" placeholder="Password" type="password"></p>
-        <p>邮箱:<input name="email"></p>
+        {% if message and message.code == 100 %}
+            <p>邮箱:<input name="email" value="{{ message.data.email }}"></p>
+        {% else %}
+            <p>邮箱:<input name="email"></p>
+        {% endif %}
         <p>性别:<input name="sex" value="0" type="radio">男<input name="sex" value="1" type="radio">女</p>
         <p>
             <button type="submit">Sign In</button>
         </p>
     </form>
+{% endblock %}
+{% block script %}
     <script>
+
         function submit_form() {
             var name = $('#name').val();
             if (name == null || name.trim() == "") {
-                alert('姓名不能为空')
-                return false
+                alert('姓名不能为空');
+                return false;
             }
-        }
-    </script>
 
+        };
+
+        $(function () {
+            $('#name').focus(function () {
+                $('#errorTip').html('');
+                $('#errorTip').hide();
+            });
+        });
+    </script>
 {% endblock %}

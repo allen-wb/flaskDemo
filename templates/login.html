@@ -3,11 +3,30 @@
     {{ 'login' }}
 {% endblock %}
 {% block body %}
+    <span id="errorTip">
+        {% if message %}
+            {{ message.message }}
+        {% endif %}
+    </span>
     <form action="{{ url_for('user.login') }}" method="post">
-        <p>姓名:<input name="name" placeholder="name"></p>
-        <p>密码:<input name="password" placeholder="Password" type="password"></p>
+        <p>姓名:<input name="name" placeholder="name" id="name"></p>
+        <p>密码:<input name="password" placeholder="Password" id="password" type="password"></p>
         <p>
             <button type="submit">Sign In</button>
         </p>
     </form>
+{% endblock %}
+{% block script %}
+    <script>
+        $(function () {
+            $('#name').focus(function () {
+                $('#errorTip').html('');
+                $('#errorTip').hide();
+            });
+            $('#password').focus(function () {
+                $('#errorTip').html('');
+                $('#errorTip').hide();
+            });
+        });
+    </script>
 {% endblock %}

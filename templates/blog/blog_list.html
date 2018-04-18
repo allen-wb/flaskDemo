@@ -2,12 +2,40 @@
 {% block title %}
     {{ 'blog list' }}
 {% endblock %}
+{% block style %}
+    <style>
+        table {
+            margin: auto;
+            border-collapse: collapse;
+        }
+
+        table, th, td {
+            border: 1px solid black;
+        }
+
+        th, td {
+            height: 40px;
+            text-align: center;
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+    </style>
+{% endblock %}
 {% block body %}
     <div id="">
         {% if message %}
-            {% for blog in message %}
-                {{ blog.name }}<br>
-            {% endfor %}
+            <table>
+                <tr>
+                    <th>名称</th>
+                    <th>内容</th>
+                </tr>
+                {% for blog in message %}
+                    <tr>
+                        <td>{{ blog.name }}</td>
+                        <td>{{ blog.content }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
         {% else %}
             {{ 'no data' }}
         {% endif %}
