@@ -4,8 +4,8 @@
 {% endblock %}
 {% block body %}
     <span id="errorTip">
-        {% if message %}
-            {{ message.message }}
+        {% if result %}
+            {{ result.message }}
         {% endif %}
     </span>
     <form action="{{ url_for('user.login') }}" method="post">

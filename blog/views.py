@@ -13,4 +13,4 @@ def index():
     else:
         # res = ''
         return render_template('login.html')
-    return render_template('blog/blog_list.html', message=blogs)
+    return render_template('blog/blog_list.html', result=blogs)

@@ -1,19 +1,19 @@
 {% extends "base.html" %}
 {% block body %}
     <span id="errorTip">
-        {% if message and message.code == 100 %}
-            {{ message.message }}
+        {% if result and result.code == 100 %}
+            {{ result.message }}
         {% endif %}
     </span>
     <form action="add_user" method="post" id="form" onsubmit="submit_form()">
-        {% if message and message.code == 100 %}
-            <p>姓名:<input name="name" id="name" value="{{ message.data.name }}"></p>
+        {% if result and result.code == 100 %}
+            <p>姓名:<input name="name" id="name" value="{{ result.data.name }}"></p>
         {% else %}
             <p>姓名:<input name="name" id="name" placeholder="name"></p>
         {% endif %}
         <p>密码:<input name="password" placeholder="Password" type="password"></p>
-        {% if message and message.code == 100 %}
-            <p>邮箱:<input name="email" value="{{ message.data.email }}"></p>
+        {% if result and result.code == 100 %}
+            <p>邮箱:<input name="email" value="{{ result.data.email }}"></p>
         {% else %}
             <p>邮箱:<input name="email"></p>
         {% endif %}

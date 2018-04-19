@@ -27,7 +27,7 @@ def login():
         message = '用户名或密码错误'
         res = {'name': name, 'age': 12, 'sex': '男', 'message': message}
 
-        return render_template('login.html', message=res)
+        return render_template('login.html', result=res)
 
 
 @user.route('/logout', methods=['POST'])
@@ -54,14 +54,14 @@ def add_user():
         db.close()
         error_message = '用户名' + name + '已存在,请重新输入'
         res = {'code': 100, 'message': error_message, 'data': {'email': email, 'name': name}}
-        return render_template('user/register.html', message=res)
+        return render_template('user/register.html', result=res)
     else:
         user = User(id=get_uuid(), name=name, password=password, email=email, sex=sex, create_time=datetime.now())
         db.add(user)
         db.commit()
         db.close()
         res = {'code': 200, 'message': 'success'}
-        return render_template('login.html', message=res)
+        return render_template('login.html', result=res)
 
 
 @user.route('/list')
@@ -70,4 +70,4 @@ def get_user_list():
     users = db.query(User).all()
     # 使用execute查询,返回的是一个元组集合,在页面可用user[下标获取]
     # ret = session.execute('SELECT user.id AS user_id, user.name AS user_name FROM user')
-    return render_template('user/user_list.html', users=users)
+    return render_template('user/user_list.html', result=users)

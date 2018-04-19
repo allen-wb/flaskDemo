@@ -23,13 +23,13 @@
 {% endblock %}
 {% block body %}
     <div id="">
-        {% if message %}
+        {% if result %}
             <table>
                 <tr>
                     <th>名称</th>
                     <th>内容</th>
                 </tr>
-                {% for blog in message %}
+                {% for blog in result %}
                     <tr>
                         <td>{{ blog.name }}</td>
                         <td>{{ blog.content }}</td>
